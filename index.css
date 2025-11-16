@@ -700,32 +700,11 @@ footer {
   .menu-toggle {
     display: block;
   }
+  
   .skill-group {
-    width: 90%;
-    max-width: 400px; /* Override desktop max-width for better mobile display */
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
-    justify-self: unset;
-  }
-
-  /* 2. Center the text content inside the cards */
-  .skills-container {
-    text-align: center;
-  }
-
-  /* 3. Re-style list items for centering (Remove padding and custom bullet) */
-  .skills-section ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .skills-section li {
-    text-align: center;
-    padding-left: 0;
-  }
-
-  .skills-section li::before {
-    content: none;
   }
 
   .nav-links {
