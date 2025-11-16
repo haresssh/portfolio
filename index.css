@@ -1,0 +1,681 @@
+/* -------------------------------------- */
+/* 1. CSS Variables - Rounded/Morphed Theme */
+/* -------------------------------------- */
+
+:root {
+    /* New Rounded/Morphed Palette */
+    --color-deep-green: #31694E; /* Darkest */
+    --color-olive-green: #658C58; /* Medium */
+    --color-light-olive: #BBC863; /* Bright Accent */
+    --color-pale-yellow: #F0E491; /* Lightest */
+
+    /* Universal Styling */
+    --border-radius-lg: 8px; /* Large rounded corners for morphed effect */
+    --font-heading: "Stack Sans Notch", sans-serif;
+    --font-body: "Titillium Web", sans-serif;
+}
+
+/* Apply dynamic variables based on theme */
+[data-theme='dark'] {
+    --background-color: var(--color-deep-green); 
+    --primary-color: var(--color-light-olive); /* Bright Accent: Headings, CTA BG */
+    --secondary-color: var(--color-olive-green); /* Secondary Accent: Sub-text, borders */
+    --text-color: var(--color-pale-yellow); /* Light Text */
+    --text-darker: var(--color-pale-yellow); /* H1/Logo Text */
+    
+    --surface-color: rgba(49, 105, 78, 0.9); /* Card Background (Semi-transparent Deep Green) */
+    --card-border-color: rgba(187, 200, 99, 0.5); /* Light Olive transparent border */
+    --navbar-bg: rgba(49, 105, 78, 0.9);
+    --footer-bg: #224a35; /* Slightly darker shade for footer contrast */
+    --cta-text-color: var(--color-deep-green); /* CTA text is background color for high contrast */
+
+    /* Input/Textarea styles for Dark Mode */
+    .contact-section input,
+    .contact-section textarea {
+        background: #418260; /* Slightly lighter green for input fields */
+        color: var(--text-color);
+        /* Border and focus are handled by general styles below, ensuring consistency */
+    }
+}
+
+[data-theme='light'] {
+    --background-color: var(--color-pale-yellow); 
+    --primary-color: var(--color-deep-green); /* Button BG: Dark Green */
+    --secondary-color: var(--color-olive-green); 
+    --text-color: var(--color-deep-green); 
+    --text-darker: var(--color-deep-green); 
+    
+    --surface-color: rgba(255, 255, 255, 0.9); 
+    --card-border-color: rgba(49, 105, 78, 0.3); 
+    --navbar-bg: rgba(240, 228, 145, 0.95);
+    --footer-bg: var(--background-color); 
+    --cta-text-color: var(--color-pale-yellow); /* FIX: Pale Yellow text on Dark Green button */
+
+    /* Input/Textarea styles for Light Mode */
+    .contact-section input,
+    .contact-section textarea {
+        background-color: #FFFFFF; 
+        color: var(--text-color); 
+        /* Border and focus are handled by general styles below, ensuring consistency */
+    }
+}
+
+/* -------------------------------------- */
+/* 2. Global & Typography Styles & FLUID ANIMATION */
+/* -------------------------------------- */
+
+/* Keyframes for the Animated Gradient Background - SLOWER */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Keyframes for fluid entrance animation - SLOWER AND SMOOTHER */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px); 
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: color 0.5s ease;
+    
+    /* Smooth Gradient and Animation Application */
+    background-size: 400% 400%; 
+    animation: gradientAnimation 5s ease-in-out infinite; 
+}
+
+/* Theme-specific gradient definitions (for smooth animated background) */
+[data-theme='dark'] {
+    background-image: linear-gradient(-45deg, var(--color-deep-green), var(--color-olive-green), var(--color-deep-green), var(--color-light-olive));
+}
+
+[data-theme='light'] {
+    background-image: linear-gradient(45deg, var(--color-pale-yellow), var(--color-light-olive), var(--color-pale-yellow));
+}
+
+/* Fluid Transition Defaults */
+* {
+    /* Use a smoother cubic-bezier for general transitions */
+    transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Text and Heading styles */
+h1 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-darker);
+    transition: transform 0.4s; 
+}
+h1:hover {
+    transform: scale(1.02); 
+}
+
+h2 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    /* Entrance Animation */
+    opacity: 0;
+    animation: fadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
+}
+
+/* Staggered delays for H2s (maintaining smooth transitions) */
+.section-container:nth-child(2) h2 { animation-delay: 0.1s; } /* About */
+.section-container:nth-child(3) h2 { animation-delay: 0.8s; } /* Experience */
+.section-container:nth-child(4) h2 { animation-delay: 2.2s; } /* Skills */
+.contact-section h2 { animation-delay: 3.0s; } /* Contact */
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.section-container {
+    padding: 60px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* -------------------------------------- */
+/* CTA Button Styles (Primary & Secondary) */
+/* -------------------------------------- */
+
+.header-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+    margin-top: 30px;
+}
+
+/* Call-to-Action Button Base */
+.cta-button {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: var(--border-radius-lg); 
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s; 
+    border: 2px solid transparent; /* Base border for visual consistency */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
+}
+
+/* Primary CTA (Get In Touch) - Solid fill */
+.cta-button.primary {
+    background-color: var(--primary-color);
+    color: var(--cta-text-color); 
+    border-color: var(--primary-color);
+}
+
+/* Secondary CTA (Download Resume) - Outline style */
+.cta-button.secondary {
+    background-color: transparent;
+    color: var(--primary-color); 
+    border-color: var(--primary-color);
+    box-shadow: none; /* Lighter shadow for secondary */
+}
+
+/* Hover effects */
+.cta-button:hover {
+    transform: translateY(-4px); /* Increased lift for softness */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+.cta-button.primary:hover {
+    background-color: var(--color-olive-green); 
+    border-color: var(--color-olive-green);
+}
+
+.cta-button.secondary:hover {
+    /* Reverse colors on hover */
+    background-color: var(--primary-color);
+    color: var(--cta-text-color); 
+}
+
+
+/* -------------------------------------- */
+/* 3. Navbar & Header Styles */
+/* -------------------------------------- */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--navbar-bg);
+    padding: 15px 40px;
+    z-index: 1000;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px); /* Increased blur */
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--card-border-color);
+    /* Soft bottom edge */
+    border-bottom-left-radius: var(--border-radius-lg);
+    border-bottom-right-radius: var(--border-radius-lg);
+}
+
+/* Mobile Menu Toggle button (hidden on desktop) */
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    color: var(--primary-color);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001; 
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.nav-item a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+.nav-item a:hover {
+    color: var(--primary-color);
+}
+
+/* Social Icons and Theme Toggle - ADD ANIMATION */
+.social-icon, .theme-toggle {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    transition: color 0.3s, transform 0.4s; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.social-icon:hover {
+    color: var(--primary-color);
+    transform: translateY(-4px) scale(1.1); 
+}
+
+.theme-toggle:hover {
+    color: var(--primary-color);
+    transform: rotate(20deg) scale(1.1);
+}
+
+.header {
+    background: none; 
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.header h1 b {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Updated: Position fix for the specialization line */
+.header p {
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+    margin-top: -10px; 
+    margin-bottom: 25px; 
+    text-align: center; 
+}
+
+/* Updated: Styles for animated skill container */
+.skill-highlight {
+    color: var(--primary-color);
+    font-weight: 700;
+    
+    /* FIX: Set a fixed width for the animated text container to prevent horizontal jumping */
+    display: inline-block;
+    min-width: 250px; /* Ensures space for the longest skill */
+    text-align: left;
+    
+    /* RESTORED: Fade Animation Transition */
+    transition: opacity 0.5s ease-in-out; 
+    
+    white-space: nowrap; 
+}
+
+/* -------------------------------------- */
+/* 4. Card Styles (Entrance & Hover Animations) - NOW ROUNDED/MORHED */
+/* -------------------------------------- */
+
+.glass-card {
+    background: var(--surface-color);
+    border-radius: var(--border-radius-lg); /* MORPHED: Large border radius */
+    /* Soft shadow for a lifted, organic look */
+    box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px var(--card-border-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border-color);
+    padding: 30px;
+    margin: 20px auto;
+    /* Revert to standard 2D transition */
+    transition: box-shadow 0.4s, transform 0.4s, border-color 0.4s; 
+
+    /* Entrance Animation - Start Hidden */
+    opacity: 0; 
+    animation: fadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.glass-card:hover {
+    /* RESTORED: Standard 2D lift effect */
+    transform: translateY(-8px); 
+    /* Softer hover shadow */
+    box-shadow: 0 20px 45px 0 rgba(0, 0, 0, 0.5), 0 0 0 1px var(--primary-color); 
+    border-color: var(--primary-color); 
+}
+
+/* Apply staggered delays for section elements (maintaining smooth transitions) */
+#about .glass-card { animation-delay: 0.4s; }
+#experience .job-card:nth-child(2) { animation-delay: 1.0s; }
+#experience .job-card:nth-child(3) { animation-delay: 1.5s; }
+.skills-container .skill-group:nth-child(1) { animation-delay: 2.5s; }
+.skills-container .skill-group:nth-child(2) { animation-delay: 2.7s; }
+.skills-container .skill-group:nth-child(3) { animation-delay: 2.9s; }
+.skills-container .skill-group:nth-child(4) { animation-delay: 3.1s; }
+#contact .glass-card { animation-delay: 3.5s; }
+
+
+/* UNIFORM WIDTHS: Applying max-width for the large single-column cards */
+#about .glass-card {
+    max-width: 900px; 
+}
+
+
+/* -------------------------------------- */
+/* 5. Experience Section (Job Cards) */
+/* -------------------------------------- */
+
+.job-card {
+    max-width: 900px; 
+    text-align: left;
+    margin-bottom: 30px;
+    /* Inherit and override glass-card entrance animation */
+    opacity: 0; 
+    animation: fadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.job-card h3 {
+    margin-top: 0;
+    color: var(--text-darker);
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+
+.company-info {
+    font-style: italic;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.job-card ul {
+    list-style: none; /* Remove default bullet */
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+.job-card li {
+    position: relative;
+    padding-left: 25px; /* Space for the custom bullet */
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.job-card li::before {
+    /* FIX: Creates a small, rounded, solid bullet */
+    content: ''; 
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%; /* Makes it perfectly round */
+    background-color: var(--primary-color); /* Use the bright accent color */
+    position: absolute;
+    left: 0;
+    top: 10px; /* Adjust vertically to center it with the line of text */
+}
+
+/* NEW: Style for the company links */
+.job-card p a {
+    color: var(--primary-color); /* Highlight the company name */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.job-card p a:hover {
+    color: var(--color-pale-yellow); /* Lighten color on hover */
+    text-decoration: underline;
+}
+/* -------------------------------------- */
+/* 6. Skills Section */
+/* -------------------------------------- */
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    text-align: left;
+}
+
+.skill-group {
+    /* Inherits .glass-card styles */
+}
+
+.skill-group h3 {
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--card-border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.skills-section ul {
+    list-style-type: circle;
+    padding: 0;
+}
+
+.skills-section li {
+    margin-bottom: 8px;
+    color: var(--text-color);
+    position: relative;
+    padding-left: 15px;
+    transition: transform 0.4s, color 0.4s; 
+}
+
+.skills-section li:hover {
+    transform: translateX(8px); 
+    color: var(--primary-color);
+}
+
+.skills-section li::before {
+    content: "✦";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-size: 0.8rem;
+    top: 3px;
+}
+
+/* -------------------------------------- */
+/* 7. Contact Section (Form Component - Reworked) */
+/* -------------------------------------- */
+
+.email-info {
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+/* This selector targets the <section> tag */
+.contact-section {
+    padding: 40px; 
+    background-color: transparent; 
+    text-align: center;
+}
+
+/* This selector targets the <form> tag (which has class="glass-card") */
+.contact-section form.glass-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; 
+    max-width: 400px; /* DECREASED WIDTH */
+    margin: 0 auto; /* CENTER ALIGNMENT */
+    background: var(--surface-color); 
+    border-radius: var(--border-radius-lg); 
+    box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px var(--card-border-color);
+    padding: 40px; /* INCREASED PADDING for breathing room */
+    border: 1px solid var(--card-border-color);
+}
+
+/* This selector targets the <div> wrapper around Name/Email */
+.contact-section .form-row {
+    display: flex;
+    gap: 15px; 
+    width: 100%;
+}
+
+.contact-section .form-row .form-group {
+    flex: 1; /* This makes Name and Email share the space */
+}
+
+.form-group {
+    width: 100%; 
+    text-align: left;
+}
+
+.contact-section label {
+    display: block; /* This makes the label stack on top of the input */
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--primary-color); /* Primary color for label for contrast */
+}
+
+/* Base styles for input/textarea */
+.contact-section input,
+.contact-section textarea {
+    width: 100%; /* This makes the input fill the .form-group */
+    padding: 12px; /* Adjusted padding */
+    border: 1px solid var(--card-border-color); 
+    box-sizing: border-box; 
+    font-family: var(--font-body);
+    font-size: 1rem;
+    border-radius: var(--border-radius-lg); 
+    /* Subtle inset shadow for depth */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); 
+    
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s; 
+}
+
+.contact-section textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+
+/* Input/Textarea focus animation - CLEANER FOCUS */
+.contact-section input:focus,
+.contact-section textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    /* Only primary color border and a subtle inset shadow */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 0 1px var(--primary-color);
+}
+
+/* SUBMIT BUTTON STYLES - ENHANCED */
+.contact-section button {
+    width: 100%;
+    padding: 14px 25px; 
+    background-color: var(--primary-color);
+    color: var(--cta-text-color); 
+    border: none;
+    border-radius: var(--border-radius-lg); 
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 400; 
+    font-size: 1.1rem; 
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.contact-section button:hover {
+    background-color: var(--color-olive-green); 
+    transform: translateY(-4px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
+}
+
+/* -------------------------------------- */
+/* 8. Footer & Media Queries (Mobile Menu Logic) */
+/* -------------------------------------- */
+
+footer {
+    background-color: var(--footer-bg);
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-color);
+    border-top: 1px solid var(--card-border-color);
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2.8rem;
+    }
+
+    /* Mobile: Stack buttons */
+    .header-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .navbar {
+        flex-direction: row; 
+        padding: 15px 20px;
+    }
+
+    /* Mobile Menu Toggle (Show button on mobile) */
+    .menu-toggle {
+        display: block; 
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed; 
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--navbar-bg); 
+        padding-top: 80px; 
+        box-shadow: none;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 30px;
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); 
+        transform: translateX(100%);
+        z-index: 999;
+    }
+    
+    .nav-links.active {
+        display: flex; 
+        transform: translateX(0);
+    }
+    
+    .nav-links .nav-item a {
+        font-size: 1.5rem;
+        color: var(--text-darker); 
+    }
+    
+    .nav-links .theme-toggle,
+    .nav-links .social-icon {
+        font-size: 1.8rem;
+        color: var(--text-darker);
+    }
+    
+    /* Stack form fields on mobile */
+    .contact-section .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    /* Add vertical spacing for stacked form fields */
+    .contact-section .form-row .form-group {
+        margin-bottom: 15px; 
+    }
+    
+    .contact-section .form-row .form-group:last-child {
+        margin-bottom: 0;
+    }
+}

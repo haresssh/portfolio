@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="icon" type="image/png" href="HP.svg" />
+    <title>Haresh Prajapati - Backend Engineer</title>
+  </head>
+
+  <body data-theme="light">
+    <nav class="navbar">
+      <div class="nav-logo">Haresh Prajapati</div>
+
+      <button class="menu-toggle" aria-label="Open menu" id="menu-toggle-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="nav-links">
+        <div class="nav-item"><a href="#">Home</a></div>
+        <div class="nav-item"><a href="#about">About</a></div>
+        <div class="nav-item"><a href="#experience">Experience</a></div>
+        <div class="nav-item"><a href="#skills">Skills</a></div>
+        <div class="nav-item"><a href="#contact">Contact Me</a></div>
+
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Toggle Dark Mode"
+        >
+          <i class="fas fa-moon"></i>
+        </button>
+
+        <a
+          href="https://in.linkedin.com/in/haresssh"
+          target="_blank"
+          aria-label="LinkedIn"
+          class="social-icon"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+        <a
+          href="https://github.com/haresssh"
+          target="_blank"
+          aria-label="Github"
+          class="social-icon"
+          ><i class="fab fa-github"></i
+        ></a>
+      </div>
+    </nav>
+
+    <header class="header">
+      <h1>
+        I'm Haresh Prajapati, <br />
+        a <b>Software Development Engineer</b>
+      </h1>
+      <p>
+        Specializing in
+        <span id="animated-skill" class="skill-highlight">Microservices</span>
+      </p>
+
+      <div class="header-buttons">
+        <a href="#contact" class="cta-button primary">Get In Touch</a>
+        <a
+          href="https://drive.google.com/file/d/1Ot4N1SOghyfJaiO39P07q0GHTyr5qVUg/view?usp=sharing"
+          target="_blank"
+          class="cta-button secondary"
+          >Download Resume</a
+        >
+      </div>
+    </header>
+
+    <section class="section-container" id="about">
+      <div class="glass-card">
+        <h2>About Me</h2>
+        <p>
+          I’m a Software Engineer who specializes in building what you can’t
+          see, the <strong>backend</strong>. <br> <br> Think of me as the digital plumber: I ensure all
+          the data flows correctly, the systems talk nicely, and the whole
+          operation stays scalable and secure. <br><br> I primarily write in <strong>Java and
+          Python</strong>, focusing on Microservices Architecture. My job is
+          to make your user experience feel like magic, even though it's really
+          just a lot of carefully written, well-tested code.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-container" id="experience">
+      <h2>Professional Experience</h2>
+
+      <div class="job-card glass-card">
+        <h3>Software Development Engineer-II (Backend)</h3>
+        <p>
+          <a
+            href="https://www.alation.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Alation</a
+          >
+          | Sep 2024 - Present
+        </p>
+        <p style="font-size: 0.9em; margin-top: 5px; margin-bottom: 5px">
+          Alation's product is the
+          <strong>Data Catalog and Agentic Data Intelligence Platform</strong>,
+          which helps organizations discover, manage, and govern their data
+          assets.
+        </p>
+        <ul>
+          <li>
+            Maintained and enhanced 30+ OCF connectors across major platforms
+            including Snowflake, Redshift, BigQuery, Oracle, Tableau, Power BI,
+            SAP BO, AWS S3, and Azure Blob.
+          </li>
+          <li>
+            Delivered bug fixes, performance optimizations, and feature upgrades
+            to ensure high connector reliability.
+          </li>
+          <li>
+            Contributed to unit tests, integration tests, and UI automation for
+            robust connector quality.
+          </li>
+          <li>
+            Partnered with support and product teams to resolve escalations
+            efficiently.
+          </li>
+        </ul>
+      </div>
+
+      <div class="job-card glass-card">
+        <h3>Software Development Engineer (Backend)</h3>
+        <p>
+          <a
+            href="https://www.infor.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Infor</a
+          >
+          | Jan 2022 - Jul 2024
+        </p>
+        <p style="font-size: 0.9em; margin-top: 5px; margin-bottom: 5px">
+          Worked on <b>Infor Birst</b>, a
+          <strong>Business Intelligence (BI) and Analytics Platform</strong>
+          that provides end-to-end data analysis and reporting.
+        </p>
+        <ul>
+          <li>Enhanced data import efficiency by 20% using multithreading.</li>
+          <li>
+            Developed Automation Utility improving migration efficiency by 90%.
+          </li>
+          <li>Reduced legacy DB maintenance overhead by 10%.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-container" id="skills">
+      <h2>Technical Skills</h2>
+
+      <div class="skills-container">
+        <div class="skill-group glass-card">
+          <h3>Programming Languages</h3>
+          <ul>
+            <li>Java</li>
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>SQL</li>
+            <li>HTML & CSS</li>
+          </ul>
+        </div>
+
+        <div class="skill-group glass-card">
+          <h3>Libraries & Frameworks</h3>
+          <ul>
+            <li>Spring Boot</li>
+            <li>Django</li>
+            <li>React</li>
+            <li>JDBC</li>
+            <li>Microservices</li>
+          </ul>
+        </div>
+
+        <div class="skill-group glass-card">
+          <h3>Tools & Databases</h3>
+          <ul>
+            <li>Git</li>
+            <li>Docker</li>
+            <li>Postgres SQL</li>
+            <li>Linux</li>
+            <li>Jenkins</li>
+          </ul>
+        </div>
+
+        <div class="skill-group glass-card">
+          <h3>Cloud & Other Skills</h3>
+          <ul>
+            <li>AWS</li>
+            <li>Azure</li>
+            <li>GCP</li>
+            <li>ETL</li>
+            <li>Data Warehousing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIX APPLIED HERE -->
+    <section class="section-container contact-section" id="contact">
+      <h2>Contact Me</h2>
+      <p>I'm always open to connect with new people & thoughts!</p>
+
+      <form
+        action="mailto:hp494343@gmail.com"
+        method="post"
+        enctype="text/plain"
+        class="glass-card"
+      >
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Haresh Prajapati. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
